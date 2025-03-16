@@ -34,4 +34,14 @@ camera.position.z = 5;
 // scene.add(camera);
 // console.log(camera);
 
+// Initialize the renderer
+const canvas = document.querySelector("canvas.threejs");
+// console.log(canvas);
+
+const renderer = new THREE.WebGLRenderer({ canvas: canvas }); // Create a WebGL renderer and link it to the canvas element
+
+// Set the size of the renderer
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.render(scene, camera); // Render the scene from the perspective of the camera
+
 
