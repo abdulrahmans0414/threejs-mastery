@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 
+
 // console.log(THREE);
 
 // Initialize the scene
@@ -22,14 +23,14 @@ console.log(scene);
 
 // Initialize the camera
 const camera = new THREE.PerspectiveCamera(
-  75,
+  45, // FOV field of view
   window.innerWidth / window.innerHeight,
-  0.1,
-  30
+  0.1, // near clip plane
+  200   // far clip plane
 );
 
 // Position the camera
-camera.position.z = 5;
+camera.position.z = 5; // Position the camera at z = 5 units
 
 // scene.add(camera);
 // console.log(camera);
@@ -43,5 +44,9 @@ const renderer = new THREE.WebGLRenderer({ canvas: canvas }); // Create a WebGL 
 // Set the size of the renderer
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.render(scene, camera); // Render the scene from the perspective of the camera
+
+
+
+
 
 
