@@ -24,25 +24,25 @@ scene.add(cubeMesh);
 // console.log(scene);
 
 // Initialize the camera
-// const camera = new THREE.PerspectiveCamera(
-//   45, // FOV field of view
-//   window.innerWidth / window.innerHeight,
-//   0.1, // near clip plane
-//   200   // far clip plane
-// );
+const camera = new THREE.PerspectiveCamera(
+  45, // FOV field of view
+  window.innerWidth / window.innerHeight,
+  0.1, // near clip plane
+  200   // far clip plane
+);
 
 
 const aspectRatio = window.innerWidth / window.innerHeight;
 
 // Initialize the orthographic projection camera
-const camera = new THREE.OrthographicCamera(
-  -1 * aspectRatio, // left
-  1 * aspectRatio, // right
-  1, // top
-  -1, // bottom
-  0.1, // near
-  200 // far
-);
+// const camera = new THREE.OrthographicCamera(
+//   -1 * aspectRatio, // left
+//   1 * aspectRatio, // right
+//   1, // top
+//   -1, // bottom
+//   0.1, // near
+//   200 // far
+// );
 
 
 // Position the camera
@@ -77,8 +77,19 @@ controls.autoRotate = true;  // Enable auto-rotation for a dynamic scene view
 // }
 // loop();
 
+
+// Handle window resize events and no longer called every frame
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight; // Update the aspect ratio
+  camera.updateProjectionMatrix(); // Update the camera's projection matrix  to reflect the camera's aspect ratio
+  renderer.setSize(window.innerWidth, window.innerHeight); // Update the size of the renderer || resize
+})
+
+
+// render the scene
 const renderLoop = function () {
   // console.log("Render Loop");
+
   controls.update(); // Update controls (required when damping is enabled)
   renderer.render(scene, camera);
   window.requestAnimationFrame(renderLoop) // Schedule the next frame
