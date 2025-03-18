@@ -10,7 +10,7 @@ const scene = new THREE.Scene();
 
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red" });
+const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red", wireframe: true });
 
 const cubeMesh = new THREE.Mesh(
   cubeGeometry,
@@ -24,12 +24,26 @@ scene.add(cubeMesh);
 // console.log(scene);
 
 // Initialize the camera
-const camera = new THREE.PerspectiveCamera(
-  45, // FOV field of view
-  window.innerWidth / window.innerHeight,
-  0.1, // near clip plane
-  200   // far clip plane
+// const camera = new THREE.PerspectiveCamera(
+//   45, // FOV field of view
+//   window.innerWidth / window.innerHeight,
+//   0.1, // near clip plane
+//   200   // far clip plane
+// );
+
+
+const aspectRatio = window.innerWidth / window.innerHeight;
+
+// Initialize the orthographic projection camera
+const camera = new THREE.OrthographicCamera(
+  -1 * aspectRatio, // left
+  1 * aspectRatio, // right
+  1, // top
+  -1, // bottom
+  0.1, // near
+  200 // far
 );
+
 
 // Position the camera
 camera.position.z = 5; // Position the camera at z = 5 units
