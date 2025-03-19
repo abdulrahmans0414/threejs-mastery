@@ -10,7 +10,10 @@ const scene = new THREE.Scene();
 
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red", wireframe: true });
+const cubeMaterial = new THREE.MeshBasicMaterial({
+  color: "red",
+  wireframe: true
+});
 
 const cubeMesh = new THREE.Mesh(
   cubeGeometry,
@@ -54,12 +57,18 @@ camera.position.z = 5; // Position the camera at z = 5 units
 // Initialize the renderer
 const canvas = document.querySelector("canvas.threejs");
 // console.log(canvas);
-const renderer = new THREE.WebGLRenderer({ canvas: canvas }); // Create a WebGL renderer and link it to the canvas element
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas,
+  antialias: true,
+}); // Create a WebGL renderer and link it to the canvas element
 
 
 // Set the size of the renderer
 renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.render(scene, camera); // Render the scene from the perspective of the camera
+
+// console.log(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // hide the aliasing
 
 
 // Initialize the controls
