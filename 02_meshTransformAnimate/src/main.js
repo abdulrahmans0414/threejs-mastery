@@ -11,13 +11,28 @@ const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
 scene.add(cubeMesh);
 
-// Transform properties of positions
-cubeMesh.position.y = 1;
-cubeMesh.position.x = 1;
-cubeMesh.position.z = -1;
+// Transform properties of the cubeMesh
+// cubeMesh.position.y = 1;
+// cubeMesh.position.x = 1;
+// cubeMesh.position.z = -1;
+
+
+// Position, scale, and rotation properties
+// These properties are inherited from the parent Object3D class
+// Changes here affect the cubeMesh's transformation in the scene
+
+
+// THREE.Vector3 represents a 3D vector (x, y, z) with useful methods
+// Common methods include .add(), .addScalar(), .copy(), distanceTo(), etc.
+// Example: Create a temporary vector for calculations
+
+const tempVector = new THREE.Vector3(0, 1, 0);
+cubeMesh.position.copy(tempVector);
+
 
 const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
+
 
 
 // initialize the camera
@@ -28,6 +43,10 @@ const camera = new THREE.PerspectiveCamera(
   200
 );
 camera.position.z = 5;
+
+// distanceTo() this method called after the camera has been initialized
+console.log(cubeMesh.position.distanceTo(camera.position));
+
 
 // initialize the renderer
 const canvas = document.querySelector("canvas.threejs");
