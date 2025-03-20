@@ -7,31 +7,33 @@ const scene = new THREE.Scene();
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red", wireframe: true });
+
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cubeMesh.position.y = -1;
-cubeMesh.scale.setScalar(0.5);
+// cubeMesh.position.y = -1;
+// cubeMesh.scale.setScalar(0.5);
 
-const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cubeMesh2.position.x = 2;
+// const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+// cubeMesh2.position.x = 2;
 
-const cubeMesh3 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cubeMesh3.position.x = -2;
+// const cubeMesh3 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+// cubeMesh3.position.x = -2;
 
 // Create a group to hold all cube meshes
-const group = new THREE.Group();
-group.add(cubeMesh);
-group.add(cubeMesh2);
-group.add(cubeMesh3);
-scene.add(group);
+// const group = new THREE.Group();
+// group.add(cubeMesh);
+// group.add(cubeMesh2);
+// group.add(cubeMesh3);
+// scene.add(group);
 
 // Transform the entire group
-group.position.y = 2;
-group.scale.setScalar(2);
-// scene.add(cubeMesh);
+// group.position.y = 2;
+// group.scale.setScalar(2);
+
+scene.add(cubeMesh);
 
 // Transform properties of the cubeMesh
-// cubeMesh.position.y = 1;
-// cubeMesh.position.x = 1;
+cubeMesh.position.y = 1;
+cubeMesh.position.x = 1;
 // cubeMesh.position.z = -1;
 
 
@@ -56,7 +58,12 @@ group.scale.setScalar(2);
 
 
 const axesHelper = new THREE.AxesHelper(5);
-scene.add(axesHelper);
+
+// Previously, axesHelper was added directly to the scene
+// scene.add(axesHelper);
+
+// This makes the axesHelper a child of cubeMesh, so it moves/rotates with the cube
+cubeMesh.add(axesHelper);
 
 
 
