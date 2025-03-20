@@ -26,8 +26,15 @@ scene.add(cubeMesh);
 // Common methods include .add(), .addScalar(), .copy(), distanceTo(), etc.
 // Example: Create a temporary vector for calculations
 
-const tempVector = new THREE.Vector3(0, 1, 0);
-cubeMesh.position.copy(tempVector);
+// const tempVector = new THREE.Vector3(0, 1, 0);
+// cubeMesh.position.copy(tempVector);
+
+// Transform scale properties of cubeMesh ->
+console.log(cubeMesh.scale);
+// cubeMesh.scale.x = 2;
+// cubeMesh.scale.y = 2;
+// cubeMesh.scale.z = 2;
+cubeMesh.scale.set(2, 2, 1);
 
 
 const axesHelper = new THREE.AxesHelper(5);
@@ -45,7 +52,7 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.z = 5;
 
 // distanceTo() this method called after the camera has been initialized
-console.log(cubeMesh.position.distanceTo(camera.position));
+// console.log(cubeMesh.position.distanceTo(camera.position));
 
 
 // initialize the renderer
