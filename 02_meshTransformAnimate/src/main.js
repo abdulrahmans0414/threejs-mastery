@@ -32,8 +32,8 @@ const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
 scene.add(cubeMesh);
 
 // Transform properties of the cubeMesh
-cubeMesh.position.y = 1;
-cubeMesh.position.x = 1;
+// cubeMesh.position.y = 1;
+// cubeMesh.position.x = 1;
 // cubeMesh.position.z = -1;
 
 
@@ -49,12 +49,33 @@ cubeMesh.position.x = 1;
 // const tempVector = new THREE.Vector3(0, 1, 0);
 // cubeMesh.position.copy(tempVector);
 
+
 // Transform scale properties of cubeMesh ->
 // console.log(cubeMesh.scale);
 // cubeMesh.scale.x = 2;
 // cubeMesh.scale.y = 2;
 // cubeMesh.scale.z = 2;
 // cubeMesh.scale.set(2, 2, 1);
+
+
+// Transform rotation properties of cubeMesh ->
+// cubeMesh.rotation is an instance of THREE.Euler
+// Euler angles represent rotations around X, Y, and Z axes
+
+// console.log(cubeMesh.rotation);
+// cubeMesh.rotation.x = Math.PI / 4; // Rotate 45 degrees around X-axis
+// cubeMesh.rotation.y = Math.PI / 2; // Rotate 90 degrees around Y-axis
+// cubeMesh.rotation.z = Math.PI / 4;
+// cubeMesh.rotation.y = -(Math.PI / 2);
+// cubeMesh.rotation.set(Math.PI / 4, Math.PI / 4, Math.PI / 4);
+
+// Reorder rotation axes to "YXZ" (Y-axis first, then X, then Z)
+cubeMesh.rotation.reorder("YXZ");
+
+// Set rotation using degrees converted to radians
+cubeMesh.rotation.y = THREE.MathUtils.degToRad(90);
+cubeMesh.rotation.x = THREE.MathUtils.degToRad(45);
+
 
 
 const axesHelper = new THREE.AxesHelper(5);
