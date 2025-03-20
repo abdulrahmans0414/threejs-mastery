@@ -11,6 +11,15 @@ const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
 scene.add(cubeMesh);
 
+// Transform properties of positions
+cubeMesh.position.y = 1;
+cubeMesh.position.x = 1;
+cubeMesh.position.z = -1;
+
+const axesHelper = new THREE.AxesHelper(5);
+scene.add(axesHelper);
+
+
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
   35,
