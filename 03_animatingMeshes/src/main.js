@@ -40,8 +40,24 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+// initialize the clock
+const clock = new THREE.Clock();
+let previousTime = 0;
+
 // render the scene
 const renderloop = () => {
+  const currentTime = clock.getElapsedTime();
+  const delta = currentTime - previousTime;
+  previousTime = currentTime;
+
+  // the delta (time between frames)
+  // console.log(delta);
+
+  // Rotate cubeMesh around the Y-axis
+  // delta ensures smooth animation regardless of frame rate
+  cubeMesh.rotation.y += THREE.MathUtils.degToRad(1) * delta * 20; // Rotate 1 degree per frame, scaled by delta and a speed factor
+
+
   controls.update();
   renderer.render(scene, camera);
   window.requestAnimationFrame(renderloop);
