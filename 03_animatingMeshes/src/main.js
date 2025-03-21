@@ -57,6 +57,26 @@ const renderloop = () => {
   // delta ensures smooth animation regardless of frame rate
   cubeMesh.rotation.y += THREE.MathUtils.degToRad(1) * delta * 20; // Rotate 1 degree per frame, scaled by delta and a speed factor
 
+  // Other Animation
+  // cubeMesh.position.x += 0.1 * delta * 2;
+  // cubeMesh.scale.x += 0.1 * delta * 2;
+
+  // Another type of animation using a sine wave for smooth oscillations
+  // console.log(Math.sin(currentTime)); // generates a value between -1 and 1
+
+  // Scale cubeMesh along the X-axis using a sine wave
+  // The sine wave is multiplied by 20 and offset by 2 for a larger range
+  // cubeMesh.scale.x = (Math.sin(currentTime)) * 20 + 1;
+
+  // Smaller sine wave animation for cubeMesh.scale.x
+  // Reduce the amplitude (multiplier) for a smaller effect
+  cubeMesh.scale.x = Math.sin(currentTime) * 0.5 + 1; // Amplitude of 0.5, offset by 1
+
+  // Move cubeMesh along the X-axis using a sine wave
+  // The sine wave is offset by 2 to keep the movement within a specific range
+  cubeMesh.position.x = (Math.sin(currentTime)) + 2;
+
+
 
   controls.update();
   renderer.render(scene, camera);
