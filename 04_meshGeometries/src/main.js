@@ -4,23 +4,35 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 // initialize the scene
 const scene = new THREE.Scene();
 
-// add objects to the scene
-// const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+
+// Add objects to the scene
+// Different types of primitive geometries in Three.js 
+
+// const geometry = new THREE.BoxGeometry(1, 1, 1);           // Width, height, depth
+// const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);  // Width, height, depth, widthSegments, heightSegments, depthSegments
+// const geometry = new THREE.SphereGeometry(1, 16, 16);      // Radius, widthSegments, heightSegments
+// const geometry = new THREE.PlaneGeometry(1, 1, 2, 2);      // Width, height, widthSegments, heightSegments
+// const geometry = new THREE.CylinderGeometry(1, 1, 1, 16);  // RadiusTop, radiusBottom, height, radialSegments
+// const geometry = new THREE.IcosahedronGeometry(1, 1);      // Radius, detail
+// const geometry = new THREE.TorusGeometry(1, 0.5, 16, 100); // Radius, tubeRadius, radialSegments, tubularSegments
+const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16); // Radius, tubeRadius, tubularSegments, radialSegments
+
+
 
 // Create custom geometry using a Float32Array for vertices
-const vertices = new Float32Array([
-  0, 0, 0, // Vertex 1: (x, y, z)
-  0, 2, 0, // Vertex 2: (x, y, z)
-  2, 1, 0, // Vertex 3: (x, y, z)
-]);
+// const vertices = new Float32Array([
+//   0, 0, 0, // Vertex 1: (x, y, z)
+//   0, 2, 0, // Vertex 2: (x, y, z)
+//   2, 1, 0, // Vertex 3: (x, y, z)
+// ]);
 
 // Create a BufferAttribute from the vertices array
 // Each vertex has 3 components (x, y, z), so the itemSize is 3
-const bufferAttribute = new THREE.BufferAttribute(vertices, 3);
+// const bufferAttribute = new THREE.BufferAttribute(vertices, 3);
 
 // Create a BufferGeometry and set the 'position' attribute
-const geometry = new THREE.BufferGeometry();
-geometry.setAttribute('position', bufferAttribute);
+// const geometry = new THREE.BufferGeometry();
+// geometry.setAttribute('position', bufferAttribute);
 
 
 const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red", wireframe: true });
