@@ -10,39 +10,59 @@ const scene = new THREE.Scene();
 
 // initialize the geometry
 const geometry = new THREE.BoxGeometry(1, 1, 1);
+const torusKnotGeometry = new THREE.TorusKnotGeometry(0.5, 0.15, 100, 16);
 const planeGeometry = new THREE.PlaneGeometry(1, 1);
 
 
-// initialize the material
-const material = new THREE.MeshBasicMaterial({
-  color: 0x00ff00,
-  // transparent: true,
-  // opacity: 0.5,
+// !initialize the material -> non environment reacting material
+// const material = new THREE.MeshBasicMaterial({
+//   color: 0x00ff00,
+// transparent: true,
+// opacity: 0.5,
+// });
+
+// !initialize the material -> environment reacting material
+// const material = new THREE.MeshLambertMaterial();
+
+// !Initialize a MeshPhongMaterial
+// MeshPhongMaterial is used for shiny, reflective surfaces
+const material = new THREE.MeshPhongMaterial({ color: "skyblue" });
+
+// !Alternative way to set material color
+// !material.color.set(0x00ff00); 
+// material.color = new THREE.Color(0x00ff00);
+
+// !Set material properties
+// material.side = THREE.DoubleSide; 
+// material.side = THREE.FrontSide; 
+// material.fog = true; 
+
+
+// !Add fog to the scene
+// !THREE.Fog creates a linear fog effect
+// const fog = new THREE.Fog(0xffffff, 1, 10); 
+// scene.fog = fog;
+
+// !Set the scene background color
+// scene.background = new THREE.Color(0xffffff); 
+
+// !Set the shininess of the material
+// Shininess controls the size and intensity of the specular highlight
+material.shininess = 90;
+
+// !Add shininess control to the Tweakpane UI
+// This allows real-time adjustment of the shininess property
+pane.addBinding(material, 'shininess', {
+  min: 0,
+  max: 100,
+  step: 1,
 });
-
-// Alternative way to set material color
-// material.color.set(0x00ff00); // Using Color.set() method
-material.color = new THREE.Color(0x00ff00);
-
-// Set material properties
-material.side = THREE.DoubleSide; // Render both sides of the geometry
-// material.side = THREE.FrontSide; // Render only the front side (default)
-material.fog = true; // Enable fog effect for this material
-
-
-// Add fog to the scene
-// THREE.Fog creates a linear fog effect
-const fog = new THREE.Fog(0xffffff, 1, 10); // Color = white, near = 1, far = 10
-scene.fog = fog;
-
-// Set the scene background color
-scene.background = new THREE.Color(0xffffff); // Set background color to white
 
 
 // initialize the mesh
 const mesh = new THREE.Mesh(geometry, material);
 
-const mesh2 = new THREE.Mesh(geometry, material); // Create a second cube mesh
+const mesh2 = new THREE.Mesh(torusKnotGeometry, material); // Create a second cube mesh
 mesh2.position.x = 1.5; // Position the second cube on the X-axis
 
 const plane = new THREE.Mesh(planeGeometry, material); // Create a plane mesh
@@ -55,6 +75,15 @@ scene.add(mesh);
 scene.add(mesh2);
 scene.add(plane);
 
+
+// !initialize the light
+const light = new THREE.AmbientLight(0xffffff, 0.2);
+// light.position.set(1, 1, 1);
+scene.add(light);
+
+const pointLight = new THREE.PointLight(0xffffff, 2);
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
 
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
