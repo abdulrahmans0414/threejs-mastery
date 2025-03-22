@@ -26,7 +26,11 @@ const planeGeometry = new THREE.PlaneGeometry(1, 1);
 
 // !Initialize a MeshPhongMaterial
 // MeshPhongMaterial is used for shiny, reflective surfaces
-const material = new THREE.MeshPhongMaterial({ color: "skyblue" });
+const material = new THREE.MeshPhongMaterial({
+  color: 0x00ff00,
+  specular: 0xffffff, // The color of the specular reflection of the material
+
+});
 
 // !Alternative way to set material color
 // !material.color.set(0x00ff00); 
@@ -81,7 +85,7 @@ const light = new THREE.AmbientLight(0xffffff, 0.2);
 // light.position.set(1, 1, 1);
 scene.add(light);
 
-const pointLight = new THREE.PointLight(0xffffff, 2);
+const pointLight = new THREE.PointLight(0xffffff, 0.3);
 pointLight.position.set(5, 5, 5);
 scene.add(pointLight);
 
