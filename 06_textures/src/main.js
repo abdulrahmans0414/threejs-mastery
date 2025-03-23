@@ -22,18 +22,36 @@ const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32);
 
 // Load a texture from an image file
 // The texture is loaded asynchronously, and once loaded, it can be applied to materials
-const grassTexture = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png");
+const grassTexture = textureLoader.load("src/static/textures/space-cruiser-panels2-bl/space-cruiser-panels2_albedo.png");
 
 // Set the texture to repeat 10 times along the U and V axes
-grassTexture.repeat.set(10, 10);
+grassTexture.repeat.set(2, 2);
 
 // Set texture wrapping behavior
-// grassTexture.wrapS = THREE.RepeatWrapping; // Repeat texture along the U-axis
-// grassTexture.wrapT = THREE.RepeatWrapping; // Repeat texture along the V-axis
+grassTexture.wrapS = THREE.RepeatWrapping; // Repeat texture along the U-axis
+grassTexture.wrapT = THREE.RepeatWrapping; // Repeat texture along the V-axis
 
 // Use mirrored repeat wrapping for a seamless, mirrored effect
-grassTexture.wrapS = THREE.MirroredRepeatWrapping; // Mirror and repeat along the U-axis
-grassTexture.wrapT = THREE.MirroredRepeatWrapping; // Mirror and repeat along the V-axis
+// grassTexture.wrapS = THREE.MirroredRepeatWrapping; // Mirror and repeat along the U-axis
+// grassTexture.wrapT = THREE.MirroredRepeatWrapping; // Mirror and repeat along the V-axis
+
+// offset the texture 
+// grassTexture.offset.set(0.5);
+
+// Add texture offset controls to the Tweakpane UI
+// This allows real-time adjustment of the texture's offset
+pane.addBinding(grassTexture, 'offset', {
+  x: {
+    min: -1, // Minimum offset value for the U-axis
+    max: 1,  // Maximum offset value for the U-axis
+    step: 0.1 // Increment step for the slider
+  },
+  y: {
+    min: -1, // Minimum offset value for the V-axis
+    max: 1,  // Maximum offset value for the V-axis
+    step: 0.1 // Increment step for the slider
+  }
+});
 
 
 // initialize the material
