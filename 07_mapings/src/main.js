@@ -22,15 +22,29 @@ const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32);
 
 // Load a texture from an image file
 // The texture is loaded asynchronously, and once loaded, it can be applied to materials
-const grassTexture = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png");
-
-
+// Load textures for PBR (Physically Based Rendering) material
+const grassAlbedo = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png"); // Base color texture
+const grassAO = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_ao.png"); // Ambient occlusion texture
+const grassHeight = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_height.png"); // Height map texture
+const grassMetallic = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_metallic.png"); // Metallic map texture
+const grassNormal = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_normal-ogl.png"); // Normal map texture
+const grassRoughness = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_roughness.png"); // Roughness map texture
 
 // initialize the material
-const material = new THREE.MeshBasicMaterial();
+// const material = new THREE.MeshBasicMaterial();
 
-// Assign the loaded texture to the material's map property 
-material.map = grassTexture;
+// Initialize a MeshStandardMaterial for PBR rendering
+const material = new THREE.MeshStandardMaterial();
+
+// Assign textures to material properties
+material.map = grassAlbedo; // Set the base color texture
+
+material.roughnessMap = grassRoughness; // Set the roughness map texture
+material.roughness = 0.1; // Adjust the base roughness value
+
+material.metalnessMap = grassMetallic; // Set the metallic map texture
+material.metalness = 0.8; // Adjust the base metalness value
+
 
 
 // Initialize a group to hold multiple meshes
@@ -109,17 +123,17 @@ window.addEventListener("resize", () => {
 const renderloop = () => {
 
   // Rotate each child of the group
-  group.children.forEach((child) => {
-    // console.log(children);
-    // child.rotation.x += 0.01;
-    // child.rotation.y += 0.01;
+  // group.children.forEach((child) => {
+  // console.log(children);
+  // child.rotation.x += 0.01;
+  // child.rotation.y += 0.01;
 
-    // Check if the child is a Mesh (to avoid errors)
-    if (child instanceof THREE.Mesh) {
-      child.rotation.x += 0.01;
-      child.rotation.y += 0.01;
-    }
-  });
+  // Check if the child is a Mesh (to avoid errors)
+  //   if (child instanceof THREE.Mesh) {
+  //     child.rotation.x += 0.01;
+  //     child.rotation.y += 0.01;
+  //   }
+  // });
 
   // Update controls (e.g., OrbitControls)
   controls.update();
