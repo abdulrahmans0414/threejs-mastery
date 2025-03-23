@@ -21,46 +21,74 @@ const planeGeometry = new THREE.PlaneGeometry(1, 1);
 // opacity: 0.5,
 // });
 
+
 // !initialize the material -> environment reacting material
 // const material = new THREE.MeshLambertMaterial();
 
-// !Initialize a MeshPhongMaterial
-// MeshPhongMaterial is used for shiny, reflective surfaces
-const material = new THREE.MeshPhongMaterial({
-  color: 0x00ff00,
-  specular: 0xffffff, // The color of the specular reflection of the material
-
-});
-
-// !Alternative way to set material color
-// !material.color.set(0x00ff00); 
+// Alternative way to set material color
+// material.color.set(0x00ff00); 
 // material.color = new THREE.Color(0x00ff00);
 
-// !Set material properties
+// Set material properties
 // material.side = THREE.DoubleSide; 
 // material.side = THREE.FrontSide; 
 // material.fog = true; 
 
-
-// !Add fog to the scene
-// !THREE.Fog creates a linear fog effect
+// Add fog to the scene
+// THREE.Fog creates a linear fog effect
 // const fog = new THREE.Fog(0xffffff, 1, 10); 
 // scene.fog = fog;
 
-// !Set the scene background color
+// Set the scene background color
 // scene.background = new THREE.Color(0xffffff); 
 
-// !Set the shininess of the material
-// Shininess controls the size and intensity of the specular highlight
-material.shininess = 90;
 
-// !Add shininess control to the Tweakpane UI
+// !Initialize a MeshPhongMaterial
+// MeshPhongMaterial is used for shiny, reflective surfaces
+// const material = new THREE.MeshPhongMaterial({
+//   color: 0x00ff00,
+//   specular: 0xffffff, // The color of the specular reflection of the material
+
+// });
+
+// Set the shininess of the material
+// Shininess controls the size and intensity of the specular highlight
+// material.shininess = 90;
+
+// Add shininess control to the Tweakpane UI
 // This allows real-time adjustment of the shininess property
-pane.addBinding(material, 'shininess', {
+// pane.addBinding(material, 'shininess', {
+//   min: 0,
+//   max: 100,
+//   step: 1,
+// });
+
+
+// !Initialize a MeshStandardMaterial
+// MeshStandardMaterial is a physically-based rendering (PBR) material
+// It uses metalness and roughness properties for realistic lighting
+const material = new THREE.MeshStandardMaterial({
+  color: 0x00ff00,
+})
+
+// Add metalness control to the Tweakpane UI
+// Metalness determines how "metal-like" the surface appears (0 = non-metal, 1 = metal)
+pane.addBinding(material, 'metalness', {
   min: 0,
-  max: 100,
-  step: 1,
+  max: 1,
+  step: 0.1,
 });
+
+// Add roughness control to the Tweakpane UI
+// Roughness determines how rough or smooth the surface appears (0 = smooth, 1 = rough)
+pane.addBinding(material, 'roughness', {
+  min: 0,
+  max: 1,
+  step: 0.1,
+});
+
+
+
 
 
 // initialize the mesh
@@ -81,11 +109,11 @@ scene.add(plane);
 
 
 // !initialize the light
-const light = new THREE.AmbientLight(0xffffff, 0.2);
+const light = new THREE.AmbientLight(0xffffff, 0.4);
 // light.position.set(1, 1, 1);
 scene.add(light);
 
-const pointLight = new THREE.PointLight(0xffffff, 0.3);
+const pointLight = new THREE.PointLight(0xffffff, 0.9);
 pointLight.position.set(5, 5, 5);
 scene.add(pointLight);
 
