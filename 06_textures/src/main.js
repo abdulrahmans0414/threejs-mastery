@@ -22,16 +22,25 @@ const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32);
 
 // Load a texture from an image file
 // The texture is loaded asynchronously, and once loaded, it can be applied to materials
-const textureTest = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png");
-// console.log(textureTest);
+const grassTexture = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png");
+
+// Set the texture to repeat 10 times along the U and V axes
+grassTexture.repeat.set(10, 10);
+
+// Set texture wrapping behavior
+// grassTexture.wrapS = THREE.RepeatWrapping; // Repeat texture along the U-axis
+// grassTexture.wrapT = THREE.RepeatWrapping; // Repeat texture along the V-axis
+
+// Use mirrored repeat wrapping for a seamless, mirrored effect
+grassTexture.wrapS = THREE.MirroredRepeatWrapping; // Mirror and repeat along the U-axis
+grassTexture.wrapT = THREE.MirroredRepeatWrapping; // Mirror and repeat along the V-axis
 
 
 // initialize the material
 const material = new THREE.MeshBasicMaterial();
 
-// Assign the loaded texture to the material's map property
-// This applies the texture to the surface of the material 
-material.map = textureTest;
+// Assign the loaded texture to the material's map property 
+material.map = grassTexture;
 
 
 // Initialize a group to hold multiple meshes
@@ -44,8 +53,11 @@ const cube = new THREE.Mesh(geometry, material);
 const knot = new THREE.Mesh(torusKnotGeometry, material);
 knot.position.x = 1.5;
 
+// Create a plane mesh with the textured material
 const plane = new THREE.Mesh(planeGeometry, material);
 plane.position.x = -1.5;
+plane.rotation.x = -(Math.PI * 0.5);
+plane.scale.set(1000, 1000);
 
 
 // Create a sphere mesh and assign geometry and material
@@ -64,7 +76,8 @@ cylinder.position.y = -1.5;
 // scene.add(cube, knot, plane, sphere, cylinder);
 
 // Add all meshes to the group
-group.add(cube, knot, plane, sphere, cylinder);
+// group.add(cube, knot, plane, sphere, cylinder);
+group.add(plane);
 
 // Add the group to the scene
 scene.add(group);
@@ -82,9 +95,10 @@ const camera = new THREE.PerspectiveCamera(
   35,
   window.innerWidth / window.innerHeight,
   0.1,
-  200
+  10000 // Far clipping plane
 );
 camera.position.z = 10;
+camera.position.y = 5; // Position the camera 5 units above the origin
 
 // initialize the renderer
 const canvas = document.querySelector("canvas.threejs");
@@ -114,17 +128,17 @@ const renderloop = () => {
   // cube.rotation.y += 0.01  // another way to rotate
 
   // Rotate each child of the group
-  group.children.forEach((child) => {
-    // console.log(children);
-    // child.rotation.x += 0.01;
-    // child.rotation.y += 0.01;
+  // group.children.forEach((child) => {
+  //   // console.log(children);
+  //   // child.rotation.x += 0.01;
+  //   // child.rotation.y += 0.01;
 
-    // Check if the child is a Mesh (to avoid errors)
-    if (child instanceof THREE.Mesh) {
-      child.rotation.x += 0.01;
-      child.rotation.y += 0.01;
-    }
-  });
+  //   // Check if the child is a Mesh (to avoid errors)
+  //   if (child instanceof THREE.Mesh) {
+  //     child.rotation.x += 0.01;
+  //     child.rotation.y += 0.01;
+  //   }
+  // });
 
   // Update controls (e.g., OrbitControls)
   controls.update();
