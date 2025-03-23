@@ -8,6 +8,10 @@ const pane = new Pane();
 // initialize the scene
 const scene = new THREE.Scene();
 
+// Initialize the texture loader
+// TextureLoader is used to load image files as textures
+const textureLoader = new THREE.TextureLoader();
+
 // initialize the geometry
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const torusKnotGeometry = new THREE.TorusKnotGeometry(0.5, 0.15, 100, 16);
@@ -15,8 +19,20 @@ const planeGeometry = new THREE.PlaneGeometry(1, 1);
 const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
 const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32);
 
+
+// Load a texture from an image file
+// The texture is loaded asynchronously, and once loaded, it can be applied to materials
+const textureTest = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png");
+// console.log(textureTest);
+
+
 // initialize the material
 const material = new THREE.MeshBasicMaterial();
+
+// Assign the loaded texture to the material's map property
+// This applies the texture to the surface of the material 
+material.map = textureTest;
+
 
 // Initialize a group to hold multiple meshes
 // Groups allow you to transform multiple objects as a single unit
