@@ -67,7 +67,30 @@ const planeGeometry = new THREE.PlaneGeometry(1, 1);
 // !Initialize a MeshStandardMaterial
 // MeshStandardMaterial is a physically-based rendering (PBR) material
 // It uses metalness and roughness properties for realistic lighting
-const material = new THREE.MeshStandardMaterial({
+// const material = new THREE.MeshStandardMaterial({
+//   color: 0x00ff00,
+// })
+
+// Add metalness control to the Tweakpane UI
+// Metalness determines how "metal-like" the surface appears (0 = non-metal, 1 = metal)
+// pane.addBinding(material, 'metalness', {
+//   min: 0,
+//   max: 1,
+//   step: 0.1,
+// });
+
+// Add roughness control to the Tweakpane UI
+// Roughness determines how rough or smooth the surface appears (0 = smooth, 1 = rough)
+// pane.addBinding(material, 'roughness', {
+//   min: 0,
+//   max: 1,
+//   step: 0.1,
+// });
+
+// !Initialize a MeshPhysicalMaterial
+// MeshPhysicalMaterial is an extension of MeshStandardMaterial with additional PBR properties
+// It supports advanced features like reflectivity and clearcoat for more realistic surfaces
+const material = new THREE.MeshPhysicalMaterial({
   color: 0x00ff00,
 })
 
@@ -87,7 +110,21 @@ pane.addBinding(material, 'roughness', {
   step: 0.1,
 });
 
+// Add reflectivity control to the Tweakpane UI
+// Reflectivity controls how reflective the surface is (0 = non-reflective, 1 = fully reflective)
+pane.addBinding(material, 'reflectivity', {
+  min: 0,
+  max: 1,
+  step: 0.1,
+});
 
+// Add clearcoat control to the Tweakpane UI
+// Clearcoat simulates a thin, transparent layer on top of the surface (e.g., car paint)
+pane.addBinding(material, 'clearcoat', {
+  min: 0,
+  max: 1,
+  step: 0.1,
+});
 
 
 
