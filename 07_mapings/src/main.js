@@ -14,10 +14,28 @@ const textureLoader = new THREE.TextureLoader();
 
 // initialize the geometry
 const geometry = new THREE.BoxGeometry(1, 1, 1);
+// console.log(geometry.attributes.uv.array);
+
+const uv2Geometry = new THREE.BufferAttribute(geometry.attributes.uv.array, 2);
+geometry.setAttribute("uv2", uv2Geometry);
+// console.log(geometry);
+
+// Repeat the process for other geometries
 const torusKnotGeometry = new THREE.TorusKnotGeometry(0.5, 0.15, 100, 16);
+const uv2TorusKnotGeometry = new THREE.BufferAttribute(torusKnotGeometry.attributes.uv.array, 2);
+torusKnotGeometry.setAttribute("uv2", uv2TorusKnotGeometry);
+
 const planeGeometry = new THREE.PlaneGeometry(1, 1);
+const uvPlaneGeometry = new THREE.BufferAttribute(planeGeometry.attributes.uv.array, 2);
+planeGeometry.setAttribute("uv2", uvPlaneGeometry);
+
 const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+const uvSphereGeometry = new THREE.BufferAttribute(sphereGeometry.attributes.uv.array, 2);
+sphereGeometry.setAttribute("uv2", uvSphereGeometry);
+
 const cylinderGeometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32);
+const uvCylinderGeometry = new THREE.BufferAttribute(cylinderGeometry.attributes.uv.array, 2);
+cylinderGeometry.setAttribute("uv2", uvCylinderGeometry);
 
 
 // Load a texture from an image file
@@ -60,6 +78,18 @@ material.displacementMap = grassHeight;
 // Adjust the displacement scale to control the intensity of the height effect
 // A higher value creates more pronounced displacement, while a lower value creates subtle depth
 material.displacementScale = 0.05; // Set a subtle displacement effect
+
+// !Ambient Occlusion (AO) Effect
+// AO maps require a second set of UV coordinates (UV2)
+material.aoMap = grassAO; // Assign the ambient occlusion map
+// material.aoMapIntensity = 0.1; // Uncomment to set a default AO intensity
+
+// Add AO intensity control to the Tweakpane UI
+pane.addBinding(material, 'aoMapIntensity', {
+  min: 0, // Minimum AO intensity
+  max: 1, // Maximum AO intensity
+  step: 0.01, // Increment step for the slider
+});
 
 
 // Initialize a group to hold multiple meshes
