@@ -38,6 +38,20 @@ earth.position.x = 10;
 scene.add(earth);
 
 
+// create a moon material
+const moonMaterial = new THREE.MeshBasicMaterial(
+  {
+    color: "gray",
+  }
+)
+const moon = new THREE.Mesh(
+  sphereGeometry,
+  moonMaterial
+);
+moon.position.x = 4;
+moon.scale.setScalar(0.5);
+earth.add(moon);
+
 
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
