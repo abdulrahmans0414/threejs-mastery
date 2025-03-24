@@ -45,13 +45,22 @@ material.roughness = 0.1; // Adjust the base roughness value
 material.metalnessMap = grassMetallic; // Set the metallic map texture
 material.metalness = 0.8; // Adjust the base metalness value
 
-// Assign the normal map texture to the material
+// !Assign the normal map texture to the material
 // Normal maps simulate surface details by perturbing the surface normals
 material.normalMap = grassNormal;
 
 // Adjust the normal map intensity using normalScale
 // The x and y values control the strength of the effect in the U and V directions
 material.normalScale.set(0.5, 0.5); // Reduce the intensity of the normal map effect
+
+// !Assign the height map texture to the material
+// Height maps (displacement maps) modify the geometry's vertices to create actual surface depth
+material.displacementMap = grassHeight;
+
+// Adjust the displacement scale to control the intensity of the height effect
+// A higher value creates more pronounced displacement, while a lower value creates subtle depth
+material.displacementScale = 0.05; // Set a subtle displacement effect
+
 
 // Initialize a group to hold multiple meshes
 // Groups allow you to transform multiple objects as a single unit
