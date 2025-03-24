@@ -8,7 +8,16 @@ const pane = new Pane();
 // initialize the scene
 const scene = new THREE.Scene();
 
+// add stuff here
+const sphereGeometry = new THREE.SphereGeometry(5, 32, 32);
+const sunMaterial = new THREE.MeshBasicMaterial({ color: 0xfff700 });
 
+
+// create a sun
+const sun = new THREE.Mesh(sphereGeometry, sunMaterial);
+scene.add(sun);
+
+sun.scale.set(5);
 
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
