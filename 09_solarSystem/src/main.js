@@ -24,34 +24,90 @@ const sun = new THREE.Mesh(
 sun.scale.setScalar(5);
 scene.add(sun);
 
-// create an earth material
-const earthMaterial = new THREE.MeshBasicMaterial(
+// !create an earth material
+// const earthMaterial = new THREE.MeshBasicMaterial(
+//   {
+//     color: "blue",
+//   }
+// )
+// const earth = new THREE.Mesh(
+//   sphereGeometry,
+//   earthMaterial
+// );
+// earth.position.x = 10;
+// scene.add(earth);
+
+
+// !create a moon material
+// const moonMaterial = new THREE.MeshBasicMaterial(
+//   {
+//     color: "gray",
+//   }
+// )
+// const moon = new THREE.Mesh(
+//   sphereGeometry,
+//   moonMaterial
+// );
+// moon.position.x = 4;
+// moon.scale.setScalar(0.5);
+// earth.add(moon);
+
+// !initialize the planets in an array
+const planets = [
   {
-    color: "blue",
-  }
-)
-const earth = new THREE.Mesh(
-  sphereGeometry,
-  earthMaterial
-);
-earth.position.x = 10;
-scene.add(earth);
-
-
-// create a moon material
-const moonMaterial = new THREE.MeshBasicMaterial(
+    name: "Mercury",
+    radius: 0.5,
+    distance: 10,
+    speed: 0.01,
+    material: mercuryMaterial,
+    moons: [],
+  },
   {
-    color: "gray",
-  }
-)
-const moon = new THREE.Mesh(
-  sphereGeometry,
-  moonMaterial
-);
-moon.position.x = 4;
-moon.scale.setScalar(0.5);
-earth.add(moon);
-
+    name: "Venus",
+    radius: 0.8,
+    distance: 15,
+    speed: 0.007,
+    material: venusMaterial,
+    moons: [],
+  },
+  {
+    name: "Earth",
+    radius: 1,
+    distance: 20,
+    speed: 0.005,
+    material: earthMaterial,
+    moons: [
+      {
+        name: "Moon",
+        radius: 0.3,
+        distance: 3,
+        speed: 0.015,
+      },
+    ],
+  },
+  {
+    name: "Mars",
+    radius: 0.7,
+    distance: 25,
+    speed: 0.003,
+    material: marsMaterial,
+    moons: [
+      {
+        name: "Phobos",
+        radius: 0.1,
+        distance: 2,
+        speed: 0.02,
+      },
+      {
+        name: "Deimos",
+        radius: 0.2,
+        distance: 3,
+        speed: 0.015,
+        color: 0xffffff,
+      },
+    ],
+  },
+];
 
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
@@ -82,27 +138,27 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// initialize a clock
-const clock = new THREE.Clock();
+// !initialize a clock
+// const clock = new THREE.Clock();
 
 // render loop
 const renderloop = () => {
 
-  const elapsedTime = clock.getElapsedTime();
+  // const elapsedTime = clock.getElapsedTime();
 
   // add animation here
-  // Earth rotation - rotates around its own axis
-  earth.rotation.y += 0.01; // Rotate 0.01 radians per frame (~0.57 degrees)
+  // !Earth rotation - rotates around its own axis
+  // earth.rotation.y += 0.01; // Rotate 0.01 radians per frame (~0.57 degrees)
 
   // moon.rotation.y += 0.005;
 
-  // Planetary orbit - Earth revolves around sun in circular path
-  earth.position.x = Math.sin(elapsedTime) * 10; // X position based on sine wave
-  earth.position.z = Math.cos(elapsedTime) * 10; // Z position based on cosine wave
+  // !Planetary orbit - Earth revolves around sun in circular path
+  // earth.position.x = Math.sin(elapsedTime) * 10; // X position based on sine wave
+  // earth.position.z = Math.cos(elapsedTime) * 10; // Z position based on cosine wave
 
-  // Moon orbit - Moon revolves around Earth
-  moon.position.x = Math.sin(elapsedTime * 2) * 3; // Faster orbit (2x speed)
-  moon.position.z = Math.cos(elapsedTime * 2) * 3; // Smaller radius (3 units)
+  // !Moon orbit - Moon revolves around Earth
+  // moon.position.x = Math.sin(elapsedTime * 2) * 3; // Faster orbit (2x speed)
+  // moon.position.z = Math.cos(elapsedTime * 2) * 3; // Smaller radius (3 units)
 
 
 
