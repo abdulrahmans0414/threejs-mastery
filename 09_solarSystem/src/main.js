@@ -143,6 +143,47 @@ const planets = [
   },
 ];
 
+// !create the planets
+const planetMeshes = planets.map((planet) => {
+  // console.log(planet);
+
+  // !create the mesh
+  const planetMesh = new THREE.Mesh(sphereGeometry, planet.material);
+
+  // set the scale
+  planetMesh.scale.setScalar(planet.radius);
+  planetMesh.position.x = planet.distance;
+
+  // add the mesh to the scene
+  scene.add(planetMesh);
+
+  // loop through each moon and create the moon
+  // console.log(planet.moons);
+  planet.moons.forEach((moon) => {
+    // console.log(moon);
+    const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
+    moonMesh.scale.setScalar(moon.radius);
+    moonMesh.position.x = moon.distance;
+    // add the moon to the planets
+    planetMesh.add(moonMesh);
+  })
+
+  return planetMesh;
+})
+
+// add lights
+const ambientLight = new THREE.AmbientLight(
+  0xffffff,
+  0.3
+)
+scene.add(ambientLight)
+
+const pointLight = new THREE.PointLight(
+  0xffffff,
+  1000
+)
+scene.add(pointLight)
+
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
   35,
