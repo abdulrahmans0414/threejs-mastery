@@ -243,23 +243,32 @@ window.addEventListener("resize", () => {
 
 // render loop
 const renderloop = () => {
-
   // const elapsedTime = clock.getElapsedTime();
 
   // add animation here
   // !Earth rotation - rotates around its own axis
   // earth.rotation.y += 0.01; // Rotate 0.01 radians per frame (~0.57 degrees)
-
   // moon.rotation.y += 0.005;
-
   // !Planetary orbit - Earth revolves around sun in circular path
   // earth.position.x = Math.sin(elapsedTime) * 10; // X position based on sine wave
   // earth.position.z = Math.cos(elapsedTime) * 10; // Z position based on cosine wave
-
   // !Moon orbit - Moon revolves around Earth
   // moon.position.x = Math.sin(elapsedTime * 2) * 3; // Faster orbit (2x speed)
   // moon.position.z = Math.cos(elapsedTime * 2) * 3; // Smaller radius (3 units)
 
+  // !Orbit around sun
+  planetMeshes.forEach((planet, index) => {
+    planet.rotation.y += planets[index].speed;
+    // console.log(planets[index].speed);
+
+    planet.position.x = Math.sin(planet.rotation.y) * planets[index].distance;
+    planet.position.z = Math.cos(planet.rotation.y) * planets[index].distance;
+    // console.log(planet.position, planet.rotation);
+    // console.log(planet.children);
+
+
+
+  });
 
 
   controls.update();
