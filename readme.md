@@ -30,23 +30,16 @@ Here are some of the hands-on projects I've worked on, complete with live demos:
 
 ### 1. **Rotating Cube**
    - **Description**: A simple introduction to Three.js, showcasing a rotating 3D cube.
-   - **Live Demo**: [View Demo](https://threejs-mastery.vercel.app/)
+   - **Live Demo**: [View Demo](https://rotating-3d-cube.vercel.app)
    - **Code**: [Source Code](/01_basic)
 
-### 2. **3D Solar System**
-   <!-- - **Description**: Simulating planetary orbits with realistic textures and animations.
-   - **Live Demo**: [View Demo](https://your-username.github.io/threejs-mastring/solar-system)
-   - **Code**: [Source Code](/solar-system) -->
+### 2. Texture Playground
+- **Description**: Interactive PBR material inspector with adjustable textures (grass, boulder, spaceship) and real-time parameter controls. - **Live Demo**: [View Demo](https://texture-playground.vercel.app) - **Code**: [Source Code](/08_texturePractice)
 
-### 3. **Interactive Scene**
-   <!-- - **Description**: Adding mouse and keyboard controls to navigate a 3D scene.
-   - **Live Demo**: [View Demo](https://your-username.github.io/threejs-mastring/interactive-scene)
-   - **Code**: [Source Code](/interactive-scene) -->
-
-### 4. **Shader Playground**
-   <!-- - **Description**: Experimenting with GLSL shaders to create custom visual effects.
-   - **Live Demo**: [View Demo](https://your-username.github.io/threejs-mastring/shader-playground)
-   - **Code**: [Source Code](/shader-playground) -->
+### 3. **3D Solar System**
+   - **Description**: Simulating planetary orbits with realistic textures and animations.
+   - **Live Demo**: [View Demo](https://solar-system-theta-seven.vercel.app)
+   - **Code**: [Source Code](/09_solarSystem)
 ---
 
 ## 🚀 Getting Started
