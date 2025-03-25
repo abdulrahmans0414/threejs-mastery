@@ -241,6 +241,9 @@ window.addEventListener("resize", () => {
 // !initialize a clock
 // const clock = new THREE.Clock();
 
+// how to access arrays in arrays
+// console.log(planets[3].moons[1].speed);
+
 // render loop
 const renderloop = () => {
   // const elapsedTime = clock.getElapsedTime();
@@ -257,14 +260,20 @@ const renderloop = () => {
   // moon.position.z = Math.cos(elapsedTime * 2) * 3; // Smaller radius (3 units)
 
   // !Orbit around sun
-  planetMeshes.forEach((planet, index) => {
-    planet.rotation.y += planets[index].speed;
-    // console.log(planets[index].speed);
+  planetMeshes.forEach((planet, planetIndex) => {
+    planet.rotation.y += planets[planetIndex].speed;
+    // console.log(planets[planetIndex].speed);
 
-    planet.position.x = Math.sin(planet.rotation.y) * planets[index].distance;
-    planet.position.z = Math.cos(planet.rotation.y) * planets[index].distance;
+    planet.position.x = Math.sin(planet.rotation.y) * planets[planetIndex].distance;
+    planet.position.z = Math.cos(planet.rotation.y) * planets[planetIndex].distance;
     // console.log(planet.position, planet.rotation);
     // console.log(planet.children);
+
+    planet.children.forEach((moon, moonIndex) => {
+      moon.rotation.y += planets[planetIndex].moons[moonIndex].speed
+      moon.position.x = Math.sin(moon.rotation.y) * planets[planetIndex].moons[moonIndex].distance
+      moon.position.z = Math.cos(moon.rotation.y) * planets[planetIndex].moons[moonIndex].distance
+    })
 
 
 
