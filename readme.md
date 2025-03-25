@@ -34,7 +34,9 @@ Here are some of the hands-on projects I've worked on, complete with live demos:
    - **Code**: [Source Code](/01_basic)
 
 ### 2. Texture Playground
-- **Description**: Interactive PBR material inspector with adjustable textures (grass, boulder, spaceship) and real-time parameter controls. - **Live Demo**: [View Demo](https://texture-playground.vercel.app) - **Code**: [Source Code](/08_texturePractice)
+- **Description**: Interactive PBR material inspector with adjustable textures (grass, boulder, spaceship) and real-time parameter controls.
+- **Live Demo**: [View Demo](https://texture-playground.vercel.app)
+- **Code**: [Source Code](/08_texturePractice)
 
 ### 3. **3D Solar System**
    - **Description**: Simulating planetary orbits with realistic textures and animations.
