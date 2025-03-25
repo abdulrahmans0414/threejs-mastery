@@ -18,32 +18,32 @@ geometry.setAttribute('uv2', uv2Geometry)
 
 
 // load the grass textures
-const grassAlbedo = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png"); // Base color texture
+const grassAlbedo = textureLoader.load("/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png"); // Base color texture
 grassAlbedo.colorSpace = THREE.SRGBColorSpace
-const grassAO = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_ao.png"); // Ambient occlusion texture
-const grassHeight = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_height.png"); // Height map texture
-const grassMetallic = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_metallic.png"); // Metallic map texture
-const grassNormal = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_normal-ogl.png"); // Normal map texture
-const grassRoughness = textureLoader.load("src/static/textures/whispy-grass-meadow-bl/wispy-grass-meadow_roughness.png"); // Roughness map texture
+const grassAO = textureLoader.load("/textures/whispy-grass-meadow-bl/wispy-grass-meadow_ao.png"); // Ambient occlusion texture
+const grassHeight = textureLoader.load("/textures/whispy-grass-meadow-bl/wispy-grass-meadow_height.png"); // Height map texture
+const grassMetallic = textureLoader.load("/textures/whispy-grass-meadow-bl/wispy-grass-meadow_metallic.png"); // Metallic map texture
+const grassNormal = textureLoader.load("/textures/whispy-grass-meadow-bl/wispy-grass-meadow_normal-ogl.png"); // Normal map texture
+const grassRoughness = textureLoader.load("/textures/whispy-grass-meadow-bl/wispy-grass-meadow_roughness.png"); // Roughness map texture
 
 
 // load the boulder textures
-const boulderAlbedo = textureLoader.load('src/static/textures/badlands-boulders-bl/badlands-boulders_albedo.png')
+const boulderAlbedo = textureLoader.load('/textures/badlands-boulders-bl/badlands-boulders_albedo.png')
 boulderAlbedo.colorSpace = THREE.SRGBColorSpace
-const boulderAo = textureLoader.load('src/static/textures/badlands-boulders-bl/badlands-boulders_ao.png')
-const boulderHeight = textureLoader.load('src/static/textures/badlands-boulders-bl/badlands-boulders_height.png')
-const boulderMetallic = textureLoader.load('src/static/textures/badlands-boulders-bl/badlands-boulders_metallic.png')
-const boulderNormal = textureLoader.load('src/static/textures/badlands-boulders-bl/badlands-boulders_normal-ogl.png')
-const boulderRoughness = textureLoader.load('src/static/textures/badlands-boulders-bl/badlands-boulders_roughness.png')
+const boulderAo = textureLoader.load('/textures/badlands-boulders-bl/badlands-boulders_ao.png')
+const boulderHeight = textureLoader.load('/textures/badlands-boulders-bl/badlands-boulders_height.png')
+const boulderMetallic = textureLoader.load('/textures/badlands-boulders-bl/badlands-boulders_metallic.png')
+const boulderNormal = textureLoader.load('/textures/badlands-boulders-bl/badlands-boulders_normal-ogl.png')
+const boulderRoughness = textureLoader.load('/textures/badlands-boulders-bl/badlands-boulders_roughness.png')
 
 // load the space cruiser textures
-const spaceCruiserAlbedo = textureLoader.load('src/static/textures/space-cruiser-panels2-bl/space-cruiser-panels2_albedo.png')
+const spaceCruiserAlbedo = textureLoader.load('/textures/space-cruiser-panels2-bl/space-cruiser-panels2_albedo.png')
 spaceCruiserAlbedo.colorSpace = THREE.SRGBColorSpace
-const spaceCruiserAo = textureLoader.load('src/static/textures/space-cruiser-panels2-bl/space-cruiser-panels2_ao.png')
-const spaceCruiserHeight = textureLoader.load('src/static/textures/space-cruiser-panels2-bl/space-cruiser-panels2_height.png')
-const spaceCruiserMetallic = textureLoader.load('src/static/textures/space-cruiser-panels2-bl/space-cruiser-panels2_metallic.png')
-const spaceCruiserNormal = textureLoader.load('src/static/textures/space-cruiser-panels2-bl/space-cruiser-panels2_normal-ogl.png')
-const spaceCruiserRoughness = textureLoader.load('src/static/textures/space-cruiser-panels2-bl/space-cruiser-panels2_roughness.png')
+const spaceCruiserAo = textureLoader.load('/textures/space-cruiser-panels2-bl/space-cruiser-panels2_ao.png')
+const spaceCruiserHeight = textureLoader.load('/textures/space-cruiser-panels2-bl/space-cruiser-panels2_height.png')
+const spaceCruiserMetallic = textureLoader.load('/textures/space-cruiser-panels2-bl/space-cruiser-panels2_metallic.png')
+const spaceCruiserNormal = textureLoader.load('/textures/space-cruiser-panels2-bl/space-cruiser-panels2_normal-ogl.png')
+const spaceCruiserRoughness = textureLoader.load('/textures/space-cruiser-panels2-bl/space-cruiser-panels2_roughness.png')
 
 // grass material
 const grassPane = pane.addFolder({
